@@ -25,6 +25,14 @@
         <entry key="..\:/Users/hajduk/AndroidStudioProjects/ContactApp/app/src/main/res/menu/dialer_nav.xml" value="0.13020833333333334" />
         <entry key="..\:/Users/hajduk/AndroidStudioProjects/ContactApp/app/src/main/res/menu/up_menu.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/hajduk/AndroidStudioProjects/ContactApp/app/src/main/res/xml/animation.xml" value="0.13020833333333334" />
+        <entry key="..\:/Users/stani/AndroidStudioProjects/AndroidStudioContactApp/app/src/main/res/drawable/dial_num_star_wht.xml" value="0.173" />
+        <entry key="..\:/Users/stani/AndroidStudioProjects/AndroidStudioContactApp/app/src/main/res/layout/activity_main.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/stani/AndroidStudioProjects/AndroidStudioContactApp/app/src/main/res/layout/dial_fragment.xml" value="0.33" />
+        <entry key="..\:/Users/stani/AndroidStudioProjects/AndroidStudioContactApp/app/src/main/res/layout/fragment_add_contact.xml" value="0.33" />
+        <entry key="..\:/Users/stani/AndroidStudioProjects/AndroidStudioContactApp/app/src/main/res/layout/fragment_contact.xml" value="0.22" />
+        <entry key="..\:/Users/stani/AndroidStudioProjects/AndroidStudioContactApp/app/src/main/res/layout/item.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/stani/AndroidStudioProjects/AndroidStudioContactApp/app/src/main/res/menu/dialer_nav.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/stani/AndroidStudioProjects/AndroidStudioContactApp/app/src/main/res/menu/up_menu.xml" value="0.18854166666666666" />
       </map>
     </option>
   </component>

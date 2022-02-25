@@ -1,16 +1,19 @@
 package com.example.contactapp;
 
+import android.widget.ImageView;
+
 public class Contact {
-    String gendar, last, name, phone;
+    String gendar, last, name, phone,profilePic;
+
 
     public Contact() {
     }
 
-    public Contact(String gendar, String last, String name, String phone) {
+    public Contact(String gendar, String name,String last, String phone) {
         this.gendar = gendar;
-        this.last = last;
         this.name = name;
-        this.phone = phone;
+        this.last=last;
+        this.phone=phone;
     }
 
     public String getName() {

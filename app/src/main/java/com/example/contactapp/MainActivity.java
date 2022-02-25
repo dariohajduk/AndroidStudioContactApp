@@ -2,8 +2,14 @@ package com.example.contactapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,31 +21,28 @@ import com.google.firebase.database.FirebaseDatabase;
 
 
 public class MainActivity extends AppCompatActivity {
+    Button btnAddContact;
+    Fragment choosenFragment=null;
 
+
+    int size=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ActivityCompat.requestPermissions(MainActivity.this,new String[]
+                {Manifest.permission.CALL_PHONE,
+                Manifest.permission.READ_SMS,
+                Manifest.permission.SEND_SMS,
+                Manifest.permission.CALL_PRIVILEGED}, PackageManager.PERMISSION_GRANTED);
+
         setContentView(R.layout.activity_main);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myContact = database.getReference("message");
         System.out.println("connected");
         BottomNavigationView bottomNav =findViewById(R.id.bottom_nav);
         bottomNav.setOnNavigationItemSelectedListener(navLis);
-
         getSupportFragmentManager().beginTransaction().replace(R.id.frag_cont,
                 new DialFragment()).commit();
-        Button btnAddContact = findViewById(R.id.BtnAddContact);
-        btnAddContact.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                btnAddContact.setVisibility(View.INVISIBLE);
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.frag_cont,new AddContactFragment(),null).
-                        setReorderingAllowed(true).
-                        addToBackStack(null).
-                        commit();
-            }
-        });
 
     }
 
@@ -47,34 +50,22 @@ public class MainActivity extends AppCompatActivity {
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                    Fragment choosenFragment=null;
-                    Button btnAddContact = findViewById(R.id.BtnAddContact);
-                    btnAddContact.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            btnAddContact.setVisibility(View.INVISIBLE);
-                            FragmentManager fragmentManager = getSupportFragmentManager();
-                            fragmentManager.beginTransaction().replace(R.id.frag_cont,new AddContactFragment(),null).
-                                    setReorderingAllowed(true).
-                                    addToBackStack(null).
-                                    commit();
-                    }});
+
                     switch (item.getItemId()) {
                         case R.id.dial_pad:
                             choosenFragment = new DialFragment();
-                            btnAddContact.setVisibility(View.VISIBLE);
                             break;
                         case R.id.phone:
                             choosenFragment = new PhoneFragment();
-                            btnAddContact.setVisibility(View.INVISIBLE);
                             break;
                         case R.id.favorite:
                             choosenFragment = new FavoriteFragment();
-                            btnAddContact.setVisibility(View.INVISIBLE);
                             break;
                         case R.id.contact:
                             choosenFragment = new ContactFragment();
-                            btnAddContact.setVisibility(View.INVISIBLE);
+                            break;
+                        case R.id.btnCall:
+                            choosenFragment = new AddContactFragment();
                             break;
                     }
                     getSupportFragmentManager().beginTransaction().replace(R.id.frag_cont,
@@ -82,4 +73,5 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 }
             };
+
 }

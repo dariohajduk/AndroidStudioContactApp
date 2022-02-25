@@ -4,13 +4,18 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class ContactAdapter extends RecyclerView.Adapter<ContactViewHolder> {
+public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactViewHolder> implements Filterable {
 
     Context context;
     ArrayList<Contact> contacts;
@@ -23,7 +28,14 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactViewHolder> {
     @NonNull
     @Override
     public ContactViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.item, parent, false);
+        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+        View v =layoutInflater.inflate(R.layout.item,parent,false);
+        RecyclerView.ViewHolder viewHolder=new RecyclerView.ViewHolder(v) {
+            @Override
+            public String toString() {
+                return super.toString();
+            }
+        };
         return new ContactViewHolder(v);
     }
 
@@ -32,17 +44,32 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactViewHolder> {
         Contact contact = contacts.get(position);
         holder.name.setText(contact.getName());
         holder.last.setText(contact.getLast());
+        holder.gendar.setText(contact.getGendar());
         holder.phone.setText(contact.getPhone());
-        holder.gendar.setText(contact.getPhone());
-
-
     }
+
 
     @Override
     public int getItemCount() {
         return contacts.size();
     }
 
-    public void startListeninig() {
+    @Override
+    public Filter getFilter() {
+        return null;
     }
+
+    public static class ContactViewHolder extends RecyclerView.ViewHolder{
+        TextView name, last, gendar,phone;
+
+        public ContactViewHolder(@NonNull View itemView) {
+            super(itemView);
+            name = itemView.findViewById(R.id.txtFirstName);
+            last = itemView.findViewById(R.id.txtLast);
+            gendar = itemView.findViewById(R.id.txtGendarT);
+            phone= itemView.findViewById(R.id.txtPhone);
+        }
+
+    }
+
 }

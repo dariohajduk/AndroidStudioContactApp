@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -15,6 +16,30 @@
         android:layout_weight="2"
         android:paddingBottom="1dp">
 
+        <Button
+            android:id="@+id/btnClearAll"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignLeft="@id/btnAddContact"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginBottom="1dp"
+            android:layout_weight="1"
+            android:text="C"
+            android:textColor="#fff"
+            android:textSize="18dp" />
+
+        <Button
+            android:id="@+id/btnAddContact"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignLeft="@id/btndel"
+            android:layout_alignBottom="@+id/btndel"
+            android:layout_marginBottom="50dp"
+            app:icon="@drawable/ic_baseline_add_24"
+            app:iconSize="15dp" />
+
         <EditText
             android:id="@+id/edtPhoneNumber"
             android:layout_width="match_parent"
@@ -28,15 +53,17 @@
             android:textSize="25sp" />
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:background="@color/black"
-            android:text="Del"
             android:id="@+id/btndel"
+            android:layout_width="52dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:background="@android:color/darker_gray"
+            android:text="Del"
             android:textColor="#fff"
-            android:textSize="25sp" />
+            android:textSize="9dp" />
+
+
     </RelativeLayout>
 
 
@@ -62,6 +89,7 @@
             android:layout_weight="1"
             android:weightSum="3"
             android:orientation="horizontal">
+
             <Button
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -70,6 +98,7 @@
                 android:layout_margin="1dp"
                 android:textSize="30sp"
                 android:id="@+id/btnOne"/>
+
             <Button
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -193,17 +222,17 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Clear All"
+                android:text="Sms"
                 android:background="@color/black"
                 android:textColor="#fff"
                 android:layout_margin="1dp"
                 android:textSize="20sp"
-                android:id="@+id/btnClearAll"/>
+                android:id="@+id/btnSms"/>
             <Button
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Make Call"
+                android:text="Call"
                 android:background="@color/black"
                 android:textColor="#fff"
                 android:layout_margin="1dp"
@@ -214,4 +243,5 @@
 
 
     </LinearLayout>
+
 </LinearLayout>
