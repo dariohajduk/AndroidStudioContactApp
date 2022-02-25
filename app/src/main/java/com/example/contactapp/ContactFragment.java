@@ -27,25 +27,24 @@ public class ContactFragment extends Fragment {
     RecyclerView recyclerView;
     ContactAdapter contactAdapter;
     ArrayList<Contact> contacts;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_contact, container, false);
-        myRef = FirebaseDatabase.getInstance().getReference("Employees");
-
+        myRef = FirebaseDatabase.getInstance().getReference("Contact List");
+        recyclerView = v.findViewById(R.id.Recycler1);
         contacts = new ArrayList<>();
-        contactAdapter = new ContactAdapter(this.getActivity(),contacts);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+        contactAdapter = new ContactAdapter(this.getActivity(), contacts);
+        recyclerView.setAdapter(contactAdapter);
 
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot dataSnapshot: snapshot.getChildren()){
-                    Contact contact = new Contact(dataSnapshot.child("name").getValue().toString(),
-                            dataSnapshot.child("last").getValue().toString(),
-                            dataSnapshot.child("gendar").getValue().toString(),
-                            dataSnapshot.child("phone").getValue().toString()
-                            );
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    Contact contact = dataSnapshot.getValue(Contact.class);
                     contacts.add(contact);
                     System.out.println(contacts.size());
                 }
